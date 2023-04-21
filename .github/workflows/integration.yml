@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
     
-      - name: 🕵🏻‍♀️ Rome checks
+      - name: ⬇️ [SETUP] Rome
         uses: rome/setup-rome@v0.4
+
+      - name: 🕵🏻‍♀️ [RUN] Rome
         run: rome ci ./src
