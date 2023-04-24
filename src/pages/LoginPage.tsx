@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form';
 import { Container } from '../components/Container';
 import { FormInput } from '../components/FormInput';
 import { LoginFormData } from '../typescript';
+import { useForm } from 'react-hook-form';
 
 export const LoginPage = () => {
 	const { register, handleSubmit } = useForm<LoginFormData>();
