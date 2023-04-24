@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { TResident, UpdateResidentFormData } from '../typescript';
-import { WithRetryRequest } from '../services/utils.services';
+import { Container } from '../components/Container';
+import { FormInput } from '../components/FormInput';
+import { UseToast } from '../hooks/UseToast';
 import {
 	getResidentDetails,
 	updateResidentService,
 } from '../services/residents.services';
-import { UseToast } from '../hooks/UseToast';
-import { Container } from '../components/Container';
+import { WithRetryRequest } from '../services/utils.services';
+import { TResident, UpdateResidentFormData } from '../typescript';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormInput } from '../components/FormInput';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const UpdateResidentPage = () => {
 	const { register, handleSubmit } = useForm<UpdateResidentFormData>();
