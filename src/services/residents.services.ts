@@ -34,6 +34,25 @@ export const getResidentDetails = async (
 	}
 };
 
+export const registerResidentService = async (newResident: TResident) => {
+	try {
+		const response = await Axios.post(
+			`${CONFIG.API_URL}/staff/register-resident`,
+			newResident,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'x-access-token': `Bearer ${localStorage.getItem('access_token')}`,
+				},
+			},
+		);
+
+		return [true, response.data];
+	} catch (error) {
+		throw error;
+	}
+};
+
 export const updateResidentService = async (resident: TResident) => {
 	try {
 		const { data } = await Axios.put(

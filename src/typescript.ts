@@ -42,4 +42,10 @@ export type RegisterStaffFormData = {
 	role: string;
 };
 
+export type RegisterResidentFormData = {
+	identification_card: string;
+	name: string;
+	mail: string;
+	apartment: number;
+};
 // Interfaces
