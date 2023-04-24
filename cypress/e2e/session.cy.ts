@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Non logged tests', () => {
+	// --- Login as admin ---
 	it('Should be able to login as admin', () => {
 		cy.visit('http://127.0.0.1:5173/login');
 
