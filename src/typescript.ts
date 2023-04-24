@@ -6,6 +6,13 @@ export type TUser = {
 	role: number;
 };
 
+export type TResident = {
+	identification_card: string;
+	name: string;
+	mail: string;
+	apartment: number;
+};
+
 // Forms
 export type LoginFormData = {
 	mail: string;

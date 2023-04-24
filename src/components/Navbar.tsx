@@ -28,7 +28,6 @@ export const Navbar = () => {
 	const [options, setOptions] = useState(NavOptions[3]);
 
 	useEffect(() => {
-		console.log(user);
 		const options = NavOptions[getRole() || 3];
 		setOptions(options);
 	}, [user, isAuthenticated]);

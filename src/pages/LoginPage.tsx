@@ -4,12 +4,22 @@ import { useAuth } from '../hooks/UseAuth';
 import { UseToast } from '../hooks/UseToast';
 import { loginService } from '../services/session.services';
 import { LoginFormData } from '../typescript';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
 	const { register, handleSubmit } = useForm<LoginFormData>();
 	const { showErrorToast, showSuccessToast } = UseToast();
-	const { login } = useAuth();
+	const { login, isAuthenticated, user } = useAuth();
+	const Navigate = useNavigate();
+
+	useEffect(() => {
+		if (isAuthenticated()) {
+			showErrorToast('You are already logged in');
+			Navigate('/view-residents');
+		}
+	}, [user]);
 
 	// Handle form submit
 	const onSubmit = handleSubmit(async (data) => {
@@ -31,6 +41,9 @@ export const LoginPage = () => {
 				mail,
 				role: id_role,
 			});
+
+			// Redirect to the residents view
+			Navigate('/view-residents');
 		}
 	});
 

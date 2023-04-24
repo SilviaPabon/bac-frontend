@@ -1,5 +1,5 @@
-import Axios from 'axios';
 import { refreshService } from './session.services';
+import Axios from 'axios';
 
 export const WithRetryRequest = async (
 	callback: Function,
