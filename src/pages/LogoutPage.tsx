@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { Container } from '../components/Container';
 import { useAuth } from '../hooks/UseAuth';
 import { useEffect } from 'react';
-import { Container } from '../components/Container';
+import { useNavigate } from 'react-router-dom';
 
 export const LogoutPage = () => {
 	const { logoout, user } = useAuth();
