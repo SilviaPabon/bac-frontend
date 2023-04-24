@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UpdateResidentPage } from './pages/UpdateResidentPage';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 					<Route path='/' element={<Navigate to='/login' replace={true} />} />
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/view-residents" element={<ResidentsPage />} />
+					<Route path="/resident/:id" element={<UpdateResidentPage />} />
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>

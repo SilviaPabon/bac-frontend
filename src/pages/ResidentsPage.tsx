@@ -59,7 +59,8 @@ export const ResidentsPage = () => {
 
 	return (
 		<Container>
-			<table className='my-4 w-full text-left'>
+			<h1 className='py-4 text-xl font-bold'>Residents:</h1>
+			<table className='w-full text-left'>
 				<thead className='border-b'>
 					<tr>
 						<th className='p-2'>Identification Card</th>

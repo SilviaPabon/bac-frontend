@@ -19,4 +19,11 @@ export type LoginFormData = {
 	password: string;
 };
 
+export type UpdateResidentFormData = {
+	identification_card: string;
+	name: string;
+	mail: string;
+	apartment: number;
+};
+
 // Interfaces
