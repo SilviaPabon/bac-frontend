@@ -6,4 +6,10 @@ export type TUser = {
 	role: number;
 };
 
+// Forms
+export type LoginFormData = {
+	Mail: string;
+	Password: string;
+};
+
 // Interfaces

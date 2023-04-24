@@ -39,7 +39,7 @@ export const Navbar = () => {
 					{options.map((option) => (
 						<li
 							key={option.path}
-							className="bg-indigo-500 text-white py-2 px-4 rounded-md"
+							className="bg-indigo-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-indigo-600 transition-colors"
 						>
 							<Link to={option.path}>{option.name}</Link>
 						</li>
