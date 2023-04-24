@@ -24,13 +24,14 @@ const NavOptions: { [key: number]: Array<TRoute> } = {
 };
 
 export const Navbar = () => {
-	const { isAuthenticated, getRole } = useAuth();
+	const { isAuthenticated, getRole, user } = useAuth();
 	const [options, setOptions] = useState(NavOptions[3]);
 
 	useEffect(() => {
+		console.log(user);
 		const options = NavOptions[getRole() || 3];
 		setOptions(options);
-	}, [isAuthenticated]);
+	}, [user, isAuthenticated]);
 
 	return (
 		<nav>

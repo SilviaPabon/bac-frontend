@@ -8,8 +8,8 @@ export type TUser = {
 
 // Forms
 export type LoginFormData = {
-	Mail: string;
-	Password: string;
+	mail: string;
+	password: string;
 };
 
 // Interfaces

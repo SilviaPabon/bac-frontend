@@ -1,14 +1,37 @@
 import { Container } from '../components/Container';
 import { FormInput } from '../components/FormInput';
+import { useAuth } from '../hooks/UseAuth';
+import { UseToast } from '../hooks/UseToast';
+import { loginService } from '../services/session.services';
 import { LoginFormData } from '../typescript';
 import { useForm } from 'react-hook-form';
 
 export const LoginPage = () => {
 	const { register, handleSubmit } = useForm<LoginFormData>();
+	const { showErrorToast, showSuccessToast } = UseToast();
+	const { login } = useAuth();
 
 	// Handle form submit
-	const onSubmit = handleSubmit((data) => {
-		console.log(data);
+	const onSubmit = handleSubmit(async (data) => {
+		if (data) {
+			const [success, response] = await loginService(data.mail, data.password);
+			console.log({ success, response });
+
+			if (!success) {
+				showErrorToast(response?.message || 'An error has occurred');
+				return;
+			}
+
+			showSuccessToast(response?.message || 'Login successful');
+			const { identification_card, name, mail, id_role } = response?.user;
+
+			login({
+				identification_card,
+				name,
+				mail,
+				role: id_role,
+			});
+		}
 	});
 
 	return (

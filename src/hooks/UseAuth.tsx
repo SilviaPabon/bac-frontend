@@ -1,8 +1,9 @@
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
+import { TUser } from '../typescript';
 
 export const useAuth = () => {
-	const { user, isLoading } = useContext(AuthContext);
+	const { user, isLoading, setUser, setIsLoading } = useContext(AuthContext);
 
 	// Check if user is authenticated
 	const isAuthenticated = () => {
@@ -13,5 +14,11 @@ export const useAuth = () => {
 		return user?.role;
 	};
 
-	return { isAuthenticated, getRole };
+	const login = (user: TUser) => {
+		setIsLoading(true);
+		setUser(user);
+		setIsLoading(false);
+	};
+
+	return { isAuthenticated, getRole, login, user };
 };
