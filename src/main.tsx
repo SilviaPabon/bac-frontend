@@ -2,6 +2,7 @@ import { Navbar } from './components/Navbar';
 import { AuthProvider } from './context/AuthContext';
 import './main.css';
 import { LoginPage } from './pages/LoginPage';
+import { LogoutPage } from './pages/LogoutPage';
 import { ResidentsPage } from './pages/ResidentsPage';
 import { UpdateResidentPage } from './pages/UpdateResidentPage';
 import React from 'react';
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 				<Routes>
 					<Route path='/' element={<Navigate to='/login' replace={true} />} />
 					<Route path="/login" element={<LoginPage />} />
+					<Route path="/logout" element={<LogoutPage />} />
 					<Route path="/view-residents" element={<ResidentsPage />} />
 					<Route path="/resident/:id" element={<UpdateResidentPage />} />
 				</Routes>

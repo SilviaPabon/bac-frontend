@@ -7,7 +7,7 @@ export const useAuth = () => {
 
 	// Check if user is authenticated
 	const isAuthenticated = () => {
-		return !isLoading && user;
+		return !isLoading && user && user.identification_card;
 	};
 
 	const getRole = () => {
@@ -20,5 +20,13 @@ export const useAuth = () => {
 		setIsLoading(false);
 	};
 
-	return { isAuthenticated, getRole, login, user };
+	const logoout = () => {
+		setIsLoading(true);
+		localStorage.removeItem('access_token');
+		localStorage.removeItem('refresh_token');
+		setUser({} as TUser);
+		setIsLoading(false);
+	};
+
+	return { isAuthenticated, getRole, login, user, logoout };
 };
