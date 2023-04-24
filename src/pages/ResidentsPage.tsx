@@ -5,10 +5,10 @@ import {
 	getResidentsService,
 	removeResidentService,
 } from '../services/residents.services';
+import { WithRetryRequest } from '../services/utils.services';
 import { TResident } from '../typescript';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { WithRetryRequest } from '../services/utils.services';
 
 export const ResidentsPage = () => {
 	const [loading, setLoading] = useState(true);
