@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 				<Routes>
 					<Route path='/' element={<Navigate to='/login' replace={true} />} />
 					<Route path="/login" element={<LoginPage />} />
+					<Route path="/view-residents" element={<LoginPage />} />
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>

@@ -1,5 +1,7 @@
+import { whoamiService } from '../services/session.services';
+import { WithRetryRequest } from '../services/utils.services';
 import { TUser } from '../typescript';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext({
 	user: null as TUser | null,
@@ -15,6 +17,29 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [user, setUser] = useState<TUser | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
+
+	// Recover the session from the local storage
+	const recoverSession = async () => {
+		const accessToken = localStorage.getItem('access_token');
+		if (!accessToken) return;
+
+		const [sucess, response] = await WithRetryRequest(whoamiService);
+		if (!sucess) return;
+		const { identification_card, name, mail, id_role } = response?.user;
+
+		setIsLoading(true);
+		setUser({
+			identification_card,
+			name,
+			mail,
+			role: id_role,
+		});
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		recoverSession();
+	}, []);
 
 	return (
 		<AuthContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>

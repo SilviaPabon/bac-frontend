@@ -12,12 +12,12 @@ const NavOptions: { [key: number]: Array<TRoute> } = {
 	// Staff
 	1: [
 		{ path: '/staff/register-resident', name: 'Register residents' },
-		{ path: '/staff/view-residents', name: 'View residents' },
+		{ path: '/view-residents', name: 'View residents' },
 	],
 	// Admin
 	2: [
 		{ path: '/admin/register-staff', name: 'Register staff' },
-		{ path: '/admin/view-residents', name: 'View residents' },
+		{ path: '/view-residents', name: 'View residents' },
 	],
 	// No access
 	3: [{ path: '/login', name: 'Login' }],
