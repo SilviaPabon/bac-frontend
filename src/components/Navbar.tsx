@@ -9,15 +9,15 @@ type TRoute = {
 };
 
 const NavOptions: { [key: number]: Array<TRoute> } = {
-	// Staff
+	// Admin
 	1: [
-		{ path: '/staff/register-resident', name: 'Register residents' },
+		{ path: '/admin/register-staff', name: 'Register staff' },
 		{ path: '/view-residents', name: 'View residents' },
 		{ path: '/logout', name: 'Logout' },
 	],
-	// Admin
+	// Staff
 	2: [
-		{ path: '/admin/register-staff', name: 'Register staff' },
+		{ path: '/staff/register-resident', name: 'Register residents' },
 		{ path: '/view-residents', name: 'View residents' },
 		{ path: '/logout', name: 'Logout' },
 	],

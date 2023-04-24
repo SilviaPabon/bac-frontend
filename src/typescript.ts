@@ -6,6 +6,14 @@ export type TUser = {
 	role: number;
 };
 
+export type TStaff = {
+	identification_card: string;
+	name: string;
+	mail: string;
+	role: number;
+	password?: string;
+};
+
 export type TResident = {
 	identification_card: string;
 	name: string;
@@ -24,6 +32,14 @@ export type UpdateResidentFormData = {
 	name: string;
 	mail: string;
 	apartment: number;
+};
+
+export type RegisterStaffFormData = {
+	identification_card: string;
+	name: string;
+	mail: string;
+	password: string;
+	role: string;
 };
 
 // Interfaces
