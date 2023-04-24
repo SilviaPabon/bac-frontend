@@ -9,8 +9,10 @@ export const WithRetryRequest = async (
 	try {
 		return await callback();
 	} catch (error) {
+		const accessToken = localStorage.getItem('access_token');
+
 		if (Axios.isAxiosError(error)) {
-			if (error.response?.status === 401 && !retried) {
+			if ((error.response?.status === 401 && !retried) || !accessToken) {
 				await refreshService();
 				return await WithRetryRequest(callback, true);
 			}

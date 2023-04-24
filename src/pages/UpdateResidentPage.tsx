@@ -31,7 +31,6 @@ export const UpdateResidentPage = () => {
 			return;
 		}
 
-		console.log(data);
 		setResident(data.resident);
 	};
 

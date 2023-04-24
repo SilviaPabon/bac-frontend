@@ -20,8 +20,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	// Recover the session from the local storage
 	const recoverSession = async () => {
-		const accessToken = localStorage.getItem('access_token');
-		if (!accessToken) return;
+		const refreshToken = localStorage.getItem('refresh_token');
+		if (!refreshToken) return;
 
 		const [sucess, response] = await WithRetryRequest(whoamiService);
 		if (!sucess) return;

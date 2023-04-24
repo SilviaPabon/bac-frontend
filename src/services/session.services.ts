@@ -45,7 +45,7 @@ export const refreshService = async (): Promise<boolean> => {
 		});
 
 		// Save the access and refresh tokens in the local storage
-		console.log('[Refresh]', data);
+		// console.log('[Refresh]', data);
 		localStorage.setItem('access_token', data.accessToken);
 		return true;
 	} catch (_error) {
@@ -62,14 +62,9 @@ export const whoamiService = async (): Promise<[boolean, any]> => {
 			},
 		});
 
-		console.log('[Whoami]', data);
+		// console.log('[Whoami]', data);
 		return [true, data];
 	} catch (error) {
-		if (Axios.isAxiosError(error)) {
-			const response = error.response?.data;
-			return [false, response];
-		}
-
-		return [false, { 'message': 'Unable to get user data. Try again later.' }];
+		throw error;
 	}
 };

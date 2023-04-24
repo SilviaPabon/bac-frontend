@@ -13,11 +13,7 @@ export const getResidentsService = async (): Promise<[boolean, any]> => {
 
 		return [true, data];
 	} catch (error) {
-		if (Axios.isAxiosError(error)) {
-			return [false, error?.response?.data];
-		}
-
-		return [false, { 'message': 'Unexpected error. Try again later.' }];
+		throw error;
 	}
 };
 
@@ -34,11 +30,7 @@ export const getResidentDetails = async (
 
 		return [true, data];
 	} catch (error) {
-		if (Axios.isAxiosError(error)) {
-			return [false, error?.response?.data];
-		}
-
-		return [false, { 'message': 'Unexpected error. Try again later.' }];
+		throw error;
 	}
 };
 
@@ -56,10 +48,6 @@ export const updateResidentService = async (resident: TResident) => {
 
 		return [true, data];
 	} catch (error) {
-		if (Axios.isAxiosError(error)) {
-			return [false, error?.response?.data];
-		}
-
-		return [false, { 'message': 'Unexpected error. Try again later.' }];
+		throw error;
 	}
 };

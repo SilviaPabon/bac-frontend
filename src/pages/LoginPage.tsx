@@ -25,8 +25,6 @@ export const LoginPage = () => {
 	const onSubmit = handleSubmit(async (data) => {
 		if (data) {
 			const [success, response] = await loginService(data.mail, data.password);
-			console.log({ success, response });
-
 			if (!success) {
 				showErrorToast(response?.message || 'An error has occurred');
 				return;
