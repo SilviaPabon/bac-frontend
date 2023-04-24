@@ -3,6 +3,8 @@ import { AuthProvider } from './context/AuthContext';
 import './main.css';
 import { LoginPage } from './pages/LoginPage';
 import { LogoutPage } from './pages/LogoutPage';
+import { RegisterResidentsPage } from './pages/RegisterResidentsPage';
+import { RegisterStaffPage } from './pages/RegisterStaffPage';
 import { ResidentsPage } from './pages/ResidentsPage';
 import { UpdateResidentPage } from './pages/UpdateResidentPage';
 import React from 'react';
@@ -23,6 +25,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 					<Route path="/logout" element={<LogoutPage />} />
 					<Route path="/view-residents" element={<ResidentsPage />} />
 					<Route path="/resident/:id" element={<UpdateResidentPage />} />
+					<Route path="/admin/register-staff" element={<RegisterStaffPage />} />
+					<Route
+						path="/staff/register-resident"
+						element={<RegisterResidentsPage />}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>
