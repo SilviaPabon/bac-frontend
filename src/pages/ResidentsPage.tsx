@@ -1,17 +1,21 @@
 import { Container } from '../components/Container';
 import { useAuth } from '../hooks/UseAuth';
 import { UseToast } from '../hooks/UseToast';
-import { getResidentsService } from '../services/residents.services';
+import {
+	getResidentsService,
+	removeResidentService,
+} from '../services/residents.services';
 import { TResident } from '../typescript';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { WithRetryRequest } from '../services/utils.services';
 
 export const ResidentsPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [residents, setResidents] = useState<TResident[]>();
 	const Navigation = useNavigate();
 	const { isAuthenticated, user, getRole } = useAuth();
-	const { showErrorToast } = UseToast();
+	const { showErrorToast, showSuccessToast } = UseToast();
 
 	useEffect(() => {
 		if (!isAuthenticated()) {
@@ -40,6 +44,21 @@ export const ResidentsPage = () => {
 	useEffect(() => {
 		setLoading(false);
 	}, [residents]);
+
+	const handleRemoveResident = async (id: string) => {
+		const [success, response] = await WithRetryRequest(() =>
+			removeResidentService(id),
+		);
+
+		if (!success) {
+			showErrorToast(response.message || 'An error has occurred');
+			return;
+		}
+
+		showSuccessToast('Resident removed successfully');
+		setLoading(true);
+		fetchResidents();
+	};
 
 	if (loading) {
 		return (
@@ -90,24 +109,30 @@ export const ResidentsPage = () => {
 							<td className='px-2 py-4 max-w-xs overflow-hidden'>
 								{resident.apartment}
 							</td>
-							<td className='px-2 py-4 max-w-xs overflow-hidden'>
+							<td className='flex gap-2 px-2 py-4 max-w-xs overflow-hidden'>
 								{/*Admin options */}
 								{getRole() === 1 && (
-									<button
-										type='button'
-										className='py-2 px-4 bg-red-500 text-white rounded-md'
-									>
-										Delete
-									</button>
+									<p className='text-gray-500'>No actions for this user...</p>
 								)}
 								{/*Staff options */}
 								{getRole() === 2 && (
-									<Link
-										to={`/resident/${resident.identification_card}`}
-										className='py-2 px-4 bg-sky-500 text-white rounded-md'
-									>
-										Update
-									</Link>
+									<>
+										<Link
+											to={`/resident/${resident.identification_card}`}
+											className='py-2 px-4 bg-sky-500 text-white rounded-md'
+										>
+											Update
+										</Link>
+										<button
+											onClick={() =>
+												handleRemoveResident(resident.identification_card)
+											}
+											type='button'
+											className='py-2 px-4 bg-red-500 text-white rounded-md'
+										>
+											Delete
+										</button>
+									</>
 								)}
 							</td>
 						</tr>

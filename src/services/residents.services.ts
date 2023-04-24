@@ -51,3 +51,20 @@ export const updateResidentService = async (resident: TResident) => {
 		throw error;
 	}
 };
+
+export const removeResidentService = async (id: string) => {
+	try {
+		const { data } = await Axios.delete(
+			`${CONFIG.API_URL}/staff/delete-resident/${id}`,
+			{
+				headers: {
+					'x-access-token': `Bearer ${localStorage.getItem('access_token')}`,
+				},
+			},
+		);
+
+		return [true, data];
+	} catch (error) {
+		throw error;
+	}
+};
