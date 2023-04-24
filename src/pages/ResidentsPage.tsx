@@ -119,7 +119,7 @@ export const ResidentsPage = () => {
 									<>
 										<Link
 											to={`/resident/${resident.identification_card}`}
-											className='py-2 px-4 bg-sky-500 text-white rounded-md'
+											className='py-2 px-4 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors'
 										>
 											Update
 										</Link>
@@ -128,7 +128,7 @@ export const ResidentsPage = () => {
 												handleRemoveResident(resident.identification_card)
 											}
 											type='button'
-											className='py-2 px-4 bg-red-500 text-white rounded-md'
+											className='py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors'
 										>
 											Delete
 										</button>
