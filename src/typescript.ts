@@ -28,7 +28,6 @@ export type LoginFormData = {
 };
 
 export type UpdateResidentFormData = {
-	identification_card: string;
 	name: string;
 	mail: string;
 	apartment: number;

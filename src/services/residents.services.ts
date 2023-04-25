@@ -1,4 +1,4 @@
-import { TResident } from '../typescript';
+import { TResident, UpdateResidentFormData } from '../typescript';
 import { CONFIG } from './config.services';
 import Axios from 'axios';
 
@@ -53,10 +53,13 @@ export const registerResidentService = async (newResident: TResident) => {
 	}
 };
 
-export const updateResidentService = async (resident: TResident) => {
+export const updateResidentService = async (
+	resident: UpdateResidentFormData,
+	identificationCard: string,
+) => {
 	try {
 		const { data } = await Axios.put(
-			`${CONFIG.API_URL}/staff/update-resident/${resident.identification_card}`,
+			`${CONFIG.API_URL}/staff/update-resident/${identificationCard}`,
 			resident,
 			{
 				headers: {

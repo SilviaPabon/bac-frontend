@@ -52,9 +52,9 @@ export const UpdateResidentPage = () => {
 
 	// Handle form submit
 	const onSubmit = handleSubmit(async (data) => {
-		if (data) {
+		if (data && id) {
 			const [success, _] = await WithRetryRequest(() =>
-				updateResidentService(data),
+				updateResidentService(data, id),
 			);
 
 			if (!success) {
@@ -72,14 +72,6 @@ export const UpdateResidentPage = () => {
 			<div className='flex flex-col items-center my-4'>
 				<h1 className='text-indigo-500 text-2xl'>Update resident</h1>
 				<form onSubmit={onSubmit}>
-					<FormInput
-						registerCallback={register}
-						fieldName='Identification card'
-						fieldId='identification_card'
-						fieldType="text"
-						placeholder="Identification card here"
-						defaultValue={resident?.identification_card}
-					/>
 					<FormInput
 						registerCallback={register}
 						fieldName='Name'
