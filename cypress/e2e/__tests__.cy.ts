@@ -183,4 +183,23 @@ describe('Staff tests', () => {
 			apartment,
 		);
 	});
+
+  // --- Delete resident ---
+  it('Should be able to delete a resident', () => {
+    // Get the name of the last resident
+    let lastResidentIdentification; 
+
+    cy.get('table tbody tr:last-child td:nth-child(1)').then(($td) => {
+      lastResidentIdentification = $td.text();
+    })
+
+    // Click the "Delete" button in the last row
+    cy.get('table tbody tr:last-child td:last-child button').click();
+
+    // Check the user is redirected to the /view-residents page
+    cy.url().should('include', '/view-residents');
+
+    // Check the resident is not in the table
+    cy.get('table tbody tr:last-child td:nth-child(1)').should('not.contain', lastResidentIdentification);
+  })
 });
